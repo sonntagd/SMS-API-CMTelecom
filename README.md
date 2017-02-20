@@ -3,7 +3,7 @@
 This module provides a basic implementation of the cmtelecom.com SMS API.
 
 
-INSTALLATION
+## INSTALLATION
 
 To install this module, easily run the following command:
 
