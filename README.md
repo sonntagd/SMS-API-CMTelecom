@@ -1,5 +1,7 @@
 # SMS::API::CMTelecom
 
+[![Build Status](https://travis-ci.org/sonntagd/SMS-API-CMTelecom.svg?branch=master)](https://travis-ci.org/sonntagd/SMS-API-CMTelecom)
+
 This module provides a basic implementation of the cmtelecom.com SMS API.
 
 Later we will add a SMS::Send:: module to provide SMS sending via this standard interface. But SMS::Send only allows sending SMS, but we want to have some additional functions like number verification. That's why I added a separate module.
