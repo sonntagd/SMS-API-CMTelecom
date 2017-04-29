@@ -27,7 +27,7 @@ our $VERSION = '0.01';
     );
 
     $sms->send(
-        sender     => $sender,
+        sender     => '00480000111111111',
         message    => 'please call me!',
         recipients => '00490000000000000',
         reference  => 293854,
@@ -35,7 +35,7 @@ our $VERSION = '0.01';
 
     # bulk send to many recipients:
     $sms->send(
-        sender     => $sender,
+        sender     => '00480000111111111',
         message    => 'please call me!',
         recipients => ['00490000000000000', '00480000000000', '004300021651202'],
         reference  => 293854,
@@ -212,7 +212,7 @@ Dominic Sonntag, C<< <dominic at s5g.de> >>
 
 =head1 BUGS AND SUPPORT
 
-Please report any bugs or feature requests on Github: https://github.com/sonntagd/SMS-API-CMTelecom/issues
+Please report any bugs or feature requests on Github: L<https://github.com/sonntagd/SMS-API-CMTelecom/issues>
 
 
 =head1 LICENSE AND COPYRIGHT
