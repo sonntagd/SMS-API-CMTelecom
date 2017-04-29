@@ -40,7 +40,7 @@ subtest simple_message => sub {
     is_deeply $res, {
             messages => [
                 {
-                    to             => $phone_number,
+                    to             => clean_number($phone_number),
                     parts          => 1,
                     reference      => undef,
                     messageDetails => undef,
@@ -72,7 +72,7 @@ subtest simple_message_with_reference => sub {
     is_deeply $res, {
             messages => [
                 {
-                    to             => $phone_number,
+                    to             => clean_number($phone_number),
                     parts          => 1,
                     reference      => $reference,
                     messageDetails => undef,
@@ -83,3 +83,8 @@ subtest simple_message_with_reference => sub {
     is $sms->error_message, undef, 'error message is empty';
 };
 
+sub clean_number {
+    my $num = shift;
+    $num =~ s/\D//g;
+    return $num;
+}

@@ -19,6 +19,7 @@ WriteMakefile(
         'Test::CheckManifest' => 0,
         'Test::Pod::Coverage' => 0,
         'Test::Pod'           => 0,
+        'SMS::Send'           => 0,
     },
     PREREQ_PM => {
         'LWP::UserAgent'       => 0,

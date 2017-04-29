@@ -1,5 +1,8 @@
 Revision history for SMS-API-CMTelecom
 
-0.01    Date/time
+0.02	2017-04-29
+	Added a driver for SMS::Send.
+
+0.01    2017-04-29
         First version, released on an unsuspecting world.
 
