@@ -11,4 +11,4 @@ os:
   - linux
 
 script:
-  perl Makefile.PL && make test RELEASE_TESTING=1 
+  perl Makefile.PL && make manifest && make test RELEASE_TESTING=1

@@ -14,5 +14,7 @@ inc/
 nytprof.out
 pod2htm*.tmp
 pm_to_blib
+MANIFEST
+MANIFEST.bak
 SMS-API-CMTelecom-*
 SMS-API-CMTelecom-*.tar.gz
