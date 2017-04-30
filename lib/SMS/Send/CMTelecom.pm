@@ -2,16 +2,13 @@ package SMS::Send::CMTelecom;
 
 use strict;
 use warnings;
-
-$SMS::Send::CMTelecom::VERSION = '0.03';
-
-# ABSTRACT: SMS::Send driver for the CMTelecom SMS gateway
-
 use Carp;
 use HTTP::Tiny;
 use SMS::API::CMTelecom;
 
 use base 'SMS::Send::Driver';
+
+$SMS::Send::CMTelecom::VERSION = '0.03';
 
 sub new {
     my ($class, %args) = @_;
@@ -71,6 +68,7 @@ SMS::Send::CMTelecom - SMS::Send driver for the CMTelecom SMS gateway
     my $sent = $sender->send_sms(
         'text'    => 'This is a test message',
         'to'      => '+55 (19) 1234 5678',
+        '_from'   => '+55 (18) 1234 5678',
     );
 
     # Did the send succeed.
@@ -85,6 +83,24 @@ SMS::Send::CMTelecom - SMS::Send driver for the CMTelecom SMS gateway
 This module currently uses the L<HTTPS JSON API|https://gw.cmtelecom.com/>.
 
 =head1 METHODS
+
+=head2 new
+
+    # Create new sender using this driver.
+    my $sender = SMS::Send::->new('CMTelecom',
+        _producttoken => '00000000-0000-0000-0000-000000000000',
+    );
+
+=over
+
+=item _producttoken
+
+The C<_producttoken> param is a mandatory parameter which is needed to authenticate
+against the CMTelecom messaging gateway.
+
+=back
+
+=cut
 
 =head2 send_sms
 
