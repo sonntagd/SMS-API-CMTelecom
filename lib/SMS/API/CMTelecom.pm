@@ -41,6 +41,16 @@ our $VERSION = '0.03';
         reference  => 293854,
     );
 
+    my $number = '00480000111111111';
+    if ($sms->validate_number($number)) {
+        print "$number is a valid phone number.\n"
+    } else {
+        print "$number is no valid phone number.\n"
+    }
+
+    my $number_details = $sms->number_details($number);
+    print "$number was ported.\n" if $number_details->{ported};
+
 
 =head1 METHODS
 
