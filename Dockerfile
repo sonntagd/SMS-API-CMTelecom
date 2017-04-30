@@ -1,4 +1,5 @@
 FROM perl:5.24
+# FROM perl:5.10
 
 RUN cpanm LWP::UserAgent
 RUN cpanm LWP::Protocol::https

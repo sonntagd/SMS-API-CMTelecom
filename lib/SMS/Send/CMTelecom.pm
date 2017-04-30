@@ -3,7 +3,6 @@ package SMS::Send::CMTelecom;
 use strict;
 use warnings;
 use Carp;
-use HTTP::Tiny;
 use SMS::API::CMTelecom;
 
 use base 'SMS::Send::Driver';
