@@ -16,7 +16,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
@@ -93,7 +93,7 @@ holding multiple scalars containing one phone number each.
 
 =item C<< sender => $sender >>
 
-Optional. Can also be set globally when construction the object with C<new()>.
+Optional if already given as parameter to C<new>. Can also be set globally when construction the object with C<new()>.
 
 =back
 
@@ -193,6 +193,61 @@ sub _reset_error_message {
     my ($self, $message) = @_;
     $self->{error_message} = undef;
     return;
+}
+
+=head2 validate_number $number
+
+Checks if the given phone number is valid and provides additional information,
+e.g. how the number should be formatted. Returns 1 if the number is valid, a
+false value otherwise.
+
+=cut
+
+sub validate_number {
+    my ($self, $number) = @_;
+
+    my $req = HTTP::Request->new(
+        POST => 'https://api.cmtelecom.com/v1.1/numbervalidation',
+        [
+            'Content-Type'      => 'application/json',
+            'X-CM-PRODUCTTOKEN' => $self->{product_token},
+        ],
+        encode_json { phonenumber => $number },
+    );
+
+    my $res = $self->{_ua}->request( $req );
+    if ($res->code == 200) {
+        my $result = decode_json $res->content();
+        return 1 if JSON::is_bool($result->{valid_number}) and $result->{valid_number};
+        return 0;
+    }
+    return $self->_set_error_message('HTTP request returned with status '.$res->code);
+}
+
+=head2 number_details $number
+
+Returns carrier, country, timezone and number type information about the given number.
+
+=cut
+
+sub number_details {
+    my ($self, $number) = @_;
+
+    my $req = HTTP::Request->new(
+        POST => 'https://api.cmtelecom.com/v1.1/numbervalidation',
+        [
+            'Content-Type'      => 'application/json',
+            'X-CM-PRODUCTTOKEN' => $self->{product_token},
+        ],
+        encode_json { phonenumber => $number },
+    );
+
+    my $res = $self->{_ua}->request( $req );
+
+    if ($res->code == 200) {
+        return decode_json $res->content();
+    }
+    return $self->_set_error_message('HTTP request returned with status '.$res->code);
 }
 
 =head2 error_message
