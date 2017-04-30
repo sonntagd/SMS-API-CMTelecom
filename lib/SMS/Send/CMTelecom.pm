@@ -7,7 +7,7 @@ use SMS::API::CMTelecom;
 
 use base 'SMS::Send::Driver';
 
-$SMS::Send::CMTelecom::VERSION = '0.03';
+$SMS::Send::CMTelecom::VERSION = '0.04';
 
 sub new {
     my ($class, %args) = @_;
